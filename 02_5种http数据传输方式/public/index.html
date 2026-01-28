@@ -5,10 +5,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/qs@6.10.2/dist/qs.js"></script>
+
 </head>
 
 <body>
-  hello
+
+  <script>
+
+    async function TestUrlParam() {
+      const res = await axios.get("/person/99")
+      console.log(res)
+    }
+
+    TestUrlParam()
+
+    async function TestQuery() {
+      const res = await axios.get("/person/info?username=xin&age=18")
+      console.log(res)
+    }
+
+    TestQuery()
+
+    async function TestFormUrlEncoded() {
+      const res = await axios.post("/person", Qs.stringify({
+        name: 'zxx',
+        age: 18
+      }), {
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        }
+      })
+
+      console.log(res)
+    }
+
+    TestFormUrlEncoded()
+
+    async function TestJson() {
+      const res = await axios.post("/person/create", {
+        username: "zhangxinxin",
+        age: 18
+      })
+
+      console.log(res)
+    }
+
+    TestJson()
+
+  </script>
 </body>
+
+
 
 </html>
