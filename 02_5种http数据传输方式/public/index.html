@@ -12,6 +12,7 @@
 
 <body>
 
+  <input type="file" multiple id="fileInput">
   <script>
 
     async function TestUrlParam() {
@@ -54,6 +55,25 @@
 
     TestJson()
 
+    const fileInputEl = document.querySelector("#fileInput")
+
+    async function TestFormData() {
+      const data = new FormData()
+      data.set('username', 'xinxin')
+      data.set('age', 18)
+      data.set('file1', fileInputEl.files[0])
+      data.set('file2', fileInputEl.files[1])
+
+      const res = await axios.post("/person/file", data, {
+        headers: {
+          'content-type': "multipart/form-data"
+        }
+      })
+
+      console.log(res)
+    }
+
+    fileInputEl.onchange = TestFormData
   </script>
 </body>
 
