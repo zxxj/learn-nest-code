@@ -1,11 +1,13 @@
 {
   "configurations": [
     {
-      "name": "Attach",
-      "port": 9229,
-      "request": "attach",
+      "name": "nest debug", // 自定义名称
+      "request": "launch",
+      "runtimeArgs": ["run", "start:dev"], // 和package.json的启动命令一样
+      "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
-      "type": "node"
+      "type": "node",
+      "console": "integratedTerminal" // 指定console类型为integratedTerminal,也就是用VScode的内置终端来打印日志,不然默认会用debug console来跑,那个没有颜色.
     }
   ]
 }
